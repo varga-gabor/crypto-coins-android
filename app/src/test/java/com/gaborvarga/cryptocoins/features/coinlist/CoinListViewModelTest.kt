@@ -76,20 +76,18 @@ class CoinListViewModelTest {
 
     @Test
     fun `Given onViewStarted is called, When autoRefreshState is Pending, Then loading is shown`() = runTest {
-        // When
         createViewModel()
 
-        val coinListFlow = MutableSharedFlow<AutoRefreshResult>(replay = 1)
-            .apply {
-                emit(AutoRefreshResult.Pending)
-            }
-        coEvery { autoRefreshCoinsUseCase.coinListFlow } returns coinListFlow
-
-        // Then
         viewModel.uiState.test {
+            // Given
             backgroundScope.launch {
                 viewModel.onViewStarted()
             }
+
+            // When
+            mockCoinListFlow(AutoRefreshResult.Pending)
+
+            // Then
             val expectedState = CoinListUiState(
                 emptyList(),
                 isLoading = true,
@@ -102,21 +100,20 @@ class CoinListViewModelTest {
 
     @Test
     fun `Given onViewStarted is called, When autoRefreshState is Success, Then UI state is updated`() = runTest {
-        // When
         createViewModel()
 
-        val coinListFlow = MutableSharedFlow<AutoRefreshResult>(replay = 1)
-            .apply {
-                emit(AutoRefreshResult.Success(testCoinList))
-            }
-        coEvery { autoRefreshCoinsUseCase.coinListFlow } returns coinListFlow
-
-        // Then
         viewModel.uiState.test {
+            skipItems(1) // Initial state
+
+            // Given
             backgroundScope.launch {
                 viewModel.onViewStarted()
             }
-            skipItems(1) // Initial state
+
+            // When
+            mockCoinListFlow(AutoRefreshResult.Success(testCoinList))
+
+            // Then
             val expectedState = CoinListUiState(
                 listOf(
                     CoinListEntry(
@@ -131,9 +128,16 @@ class CoinListViewModelTest {
                 ),
                 isLoading = false,
             )
-
             assertNextItem(expectedState)
             ensureAllEventsConsumed()
         }
+    }
+
+    private suspend fun mockCoinListFlow(autoRefreshResult: AutoRefreshResult) {
+        val coinListFlow = MutableSharedFlow<AutoRefreshResult>(replay = 1)
+            .apply {
+                emit(autoRefreshResult)
+            }
+        coEvery { autoRefreshCoinsUseCase.coinListFlow } returns coinListFlow
     }
 }
