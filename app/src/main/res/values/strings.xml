@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">CryptoCoins</string>
+
+    <!-- Coin List screen -->
+    <string name="coinlist_toolbar_title">Coins</string>
+
 </resources>
