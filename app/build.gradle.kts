@@ -2,6 +2,7 @@ plugins {
     alias(libs.plugins.com.android.application)
     alias(libs.plugins.org.jetbrains.kotlin.android)
     alias(libs.plugins.com.google.devtools.ksp)
+    alias(libs.plugins.de.mannodermaus.android.junit5)
 }
 
 android {
@@ -16,6 +17,7 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunnerArguments["runnerBuilder"] = "de.mannodermaus.junit5.AndroidJUnit5Builder"
     }
 
     buildTypes {
@@ -59,4 +61,10 @@ dependencies {
 
     // Logging
     implementation(libs.com.jakewharton.timber)
+
+    // Unit testing
+    testImplementation(libs.junit.jupiter.api)
+    testImplementation(libs.org.jetbrains.kotlinx.coroutines.android)
+    testImplementation(libs.org.jetbrains.kotlinx.coroutines.test)
+    testRuntimeOnly(libs.junit.jupiter.engine)
 }
