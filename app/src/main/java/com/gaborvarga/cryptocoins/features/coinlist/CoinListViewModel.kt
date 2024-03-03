@@ -8,6 +8,8 @@ import com.aldi.cryptocoins.formatter.PriceFormatter
 import com.aldi.cryptocoins.model.Coin
 import com.aldi.cryptocoins.resourceprovider.CoinResourceProvider
 import com.aldi.cryptocoins.store.AutoRefreshCoinsUseCase
+import com.aldi.cryptocoins.store.AutoRefreshCoinsUseCase.AutoRefreshResult
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.map
@@ -23,14 +25,28 @@ class CoinListViewModel(
 
     suspend fun onViewStarted() {
         autoRefreshCoinsUseCase.coinListFlow
-            .map { coinList ->
-                CoinListUiState(
-                    coinList = coinList.mapToUiModel(),
-                    isLoading = false,
-                )
-            }
+            .mapToUiState()
             .collect { _uiState.value = it }
     }
+
+    private fun Flow<AutoRefreshResult>.mapToUiState(): Flow<CoinListUiState> =
+        map { result ->
+            when (result) {
+                is AutoRefreshResult.Pending -> {
+                    CoinListUiState(
+                        coinList = emptyList(),
+                        isLoading = true,
+                    )
+                }
+
+                is AutoRefreshResult.Success -> {
+                    CoinListUiState(
+                        coinList = result.coinList.mapToUiModel(),
+                        isLoading = false,
+                    )
+                }
+            }
+        }
 
     private fun List<Coin>.mapToUiModel(): List<CoinListEntry> =
         map { coin ->
