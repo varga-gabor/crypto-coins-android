@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Toolbar">
+        <item name="android:background">@color/blue_light</item>
+    </style>
+
+    <style name="Headline_L_Bold">
+        <item name="android:textColor">@color/dark_gray</item>
+        <item name="android:textSize">@dimen/text_size_24</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textAllCaps">true</item>
+    </style>
+
+    <style name="Headline_S_Bold">
+        <item name="android:textColor">@color/dark_gray</item>
+        <item name="android:textSize">@dimen/text_size_20</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textAllCaps">true</item>
+    </style>
+
+    <style name="Body_Regular">
+        <item name="android:textColor">@color/dark_gray</item>
+        <item name="android:textSize">@dimen/text_size_18</item>
+        <item name="android:textAllCaps">true</item>
+    </style>
+
+    <style name="Body_Regular_Bold">
+        <item name="android:textColor">@color/dark_gray</item>
+        <item name="android:textSize">@dimen/text_size_18</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textAllCaps">true</item>
+    </style>
+
+    <style name="ProgressBar" parent="Widget.AppCompat.ProgressBar">
+        <item name="android:indeterminateTint">@color/blue</item>
+    </style>
+
+    <style name="RoundedCardView" parent="Base.CardView">
+        <item name="cardBackgroundColor">@color/blue_extra_pale</item>
+        <item name="cardCornerRadius">@dimen/card_corner_radius</item>
+    </style>
+</resources>
