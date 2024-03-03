@@ -77,7 +77,7 @@ class CoinDetailsViewModel(
     }
 
     companion object {
-        // Shouldn't be shown, but included; just in case
+        // This will only be shown after process death (until coin data is fetched)
         private val emptyCoinDetails = CoinDetails(
             name = "",
             price = "",
