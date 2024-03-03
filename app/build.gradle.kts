@@ -64,7 +64,9 @@ dependencies {
 
     // Unit testing
     testImplementation(libs.junit.jupiter.api)
+    testImplementation(libs.junit.jupiter.params)
     testImplementation(libs.org.jetbrains.kotlinx.coroutines.android)
     testImplementation(libs.org.jetbrains.kotlinx.coroutines.test)
+    testImplementation(libs.io.mockk)
     testRuntimeOnly(libs.junit.jupiter.engine)
 }
