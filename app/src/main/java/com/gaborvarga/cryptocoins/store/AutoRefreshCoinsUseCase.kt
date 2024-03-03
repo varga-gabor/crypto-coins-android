@@ -5,12 +5,9 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.currentCoroutineContext
 import kotlinx.coroutines.delay
-import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.flow.flow
-import kotlinx.coroutines.flow.merge
-import kotlinx.coroutines.flow.onSubscription
 import kotlinx.coroutines.flow.shareIn
 import kotlinx.coroutines.isActive
 import org.koin.core.annotation.Singleton
@@ -23,19 +20,14 @@ class AutoRefreshCoinsUseCase(
     externalScope: CoroutineScope,
 ) {
 
-    private val forceRefreshTrigger = MutableSharedFlow<Unit>(replay = 1)
-
     private val intervalFlow = flow {
         while (currentCoroutineContext().isActive) {
-            delay(autoRefreshParams.refreshIntervalMs)
             emit(Unit)
+            delay(autoRefreshParams.refreshIntervalMs)
         }
     }
 
-    val coinListFlow = merge(
-        forceRefreshTrigger,
-        intervalFlow,
-    )
+    val coinListFlow = intervalFlow
         .flatMapLatest {
             flow {
                 emit(AutoRefreshResult.Pending)
@@ -48,9 +40,6 @@ class AutoRefreshCoinsUseCase(
             started = SharingStarted.WhileSubscribed(autoRefreshParams.flowStopTimeoutMs),
             replay = 1,
         )
-        .onSubscription {
-            forceRefreshTrigger.emit(Unit)
-        }
 
     sealed interface AutoRefreshResult {
 
