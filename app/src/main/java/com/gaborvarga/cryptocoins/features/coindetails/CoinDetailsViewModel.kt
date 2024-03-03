@@ -64,11 +64,11 @@ class CoinDetailsViewModel(
     private fun Coin.toUiModel(): CoinDetails =
         CoinDetails(
             name = name,
-            price = priceFormatter.formatToUsdPrice(price),
-            changePercent = percentageFormatter.format(changePercent),
-            changePercentColor = percentageFormatter.getTextColor(changePercent),
-            marketCap = priceFormatter.formatToUsdPrice(marketCap),
-            volume = priceFormatter.formatToUsdPrice(volume),
+            price = priceFormatter.formatToUsdPrice(priceUsd),
+            changePercent = percentageFormatter.format(changePercent24Hr),
+            changePercentColor = percentageFormatter.getTextColor(changePercent24Hr),
+            marketCap = priceFormatter.formatToUsdPrice(marketCapUsd),
+            volume = priceFormatter.formatToUsdPrice(volumeUsd24Hr),
             supply = numberFormatter.abbreviate(supply),
         )
 

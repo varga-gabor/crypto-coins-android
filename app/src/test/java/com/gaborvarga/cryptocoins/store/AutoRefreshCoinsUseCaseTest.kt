@@ -21,10 +21,10 @@ class AutoRefreshCoinsUseCaseTest {
             id = "ethereum",
             name = "Ethereum",
             symbol = "ETH",
-            price = "1.12",
-            changePercent = "0.98",
-            marketCap = "122.0087",
-            volume = "100.25",
+            priceUsd = "1.12",
+            changePercent24Hr = "0.98",
+            marketCapUsd = "122.0087",
+            volumeUsd24Hr = "100.25",
             supply = "824.3"
         ),
     )

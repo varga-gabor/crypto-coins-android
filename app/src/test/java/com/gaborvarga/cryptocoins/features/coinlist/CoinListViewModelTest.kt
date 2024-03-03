@@ -27,10 +27,10 @@ class CoinListViewModelTest {
             id = "ethereum",
             name = "Ethereum",
             symbol = "ETH",
-            price = "1.0",
-            changePercent = "0.99",
-            marketCap = "1.0",
-            volume = "1.0",
+            priceUsd = "1.0",
+            changePercent24Hr = "0.99",
+            marketCapUsd = "1.0",
+            volumeUsd24Hr = "1.0",
             supply = "1.0",
         )
     )

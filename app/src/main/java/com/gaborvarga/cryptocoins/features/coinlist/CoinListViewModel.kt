@@ -57,9 +57,9 @@ class CoinListViewModel(
                 id = coin.id,
                 name = coin.name,
                 symbol = coin.symbol,
-                price = priceFormatter.formatToUsdPrice(coin.price),
-                changePercent = percentageFormatter.format(coin.changePercent),
-                changePercentColor = percentageFormatter.getTextColor(coin.changePercent),
+                price = priceFormatter.formatToUsdPrice(coin.priceUsd),
+                changePercent = percentageFormatter.format(coin.changePercent24Hr),
+                changePercentColor = percentageFormatter.getTextColor(coin.changePercent24Hr),
                 icon = resourceProvider.getIcon(coin.name),
             )
         }
