@@ -19,6 +19,10 @@ android {
     }
 
     buildTypes {
+        debug {
+            applicationIdSuffix = ".debug"
+            isDebuggable = true
+        }
         release {
             isMinifyEnabled = false
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
@@ -52,4 +56,7 @@ dependencies {
     implementation(libs.io.insert.koin.core)
     implementation(libs.io.insert.koin.android)
     implementation(libs.io.insert.koin.annotations)
+
+    // Logging
+    implementation(libs.com.jakewharton.timber)
 }

@@ -14,6 +14,7 @@ koin-annotations = "1.3.0"
 material = "1.11.0"
 org-jetbrains-kotlin-android = "1.9.22"
 org-jetbrains-kotlinx-coroutines = "1.7.3"
+timber = "5.0.1"
 
 [libraries]
 androidx-fragment-ktx = { module = "androidx.fragment:fragment-ktx", version.ref = "fragment-ktx" }
@@ -23,6 +24,7 @@ androidx-lifecycle-viewmodel-ktx = { module = "androidx.lifecycle:lifecycle-view
 androidx-recyclerview = { module = "androidx.recyclerview:recyclerview", version.ref = "androidx-recyclerview" }
 androidx-test-ext-junit = { group = "androidx.test.ext", name = "junit", version.ref = "androidx-test-ext-junit" }
 appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
+com-jakewharton-timber = { module = "com.jakewharton.timber:timber", version.ref = "timber" }
 core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "core-ktx" }
 espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espresso-core" }
 io-insert-koin-android = { module = "io.insert-koin:koin-android", version.ref = "koin" }
