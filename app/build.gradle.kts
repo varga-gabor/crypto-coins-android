@@ -68,5 +68,6 @@ dependencies {
     testImplementation(libs.org.jetbrains.kotlinx.coroutines.android)
     testImplementation(libs.org.jetbrains.kotlinx.coroutines.test)
     testImplementation(libs.io.mockk)
+    testImplementation(libs.app.cash.turbine)
     testRuntimeOnly(libs.junit.jupiter.engine)
 }
