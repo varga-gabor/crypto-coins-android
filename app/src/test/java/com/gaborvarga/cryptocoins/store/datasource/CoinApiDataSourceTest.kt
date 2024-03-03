@@ -3,9 +3,9 @@ package com.aldi.cryptocoins.store.datasource
 import android.net.http.HttpException
 import com.aldi.cryptocoins.architecture.dispatchers.DispatcherProvider
 import com.aldi.cryptocoins.architecture.errortracker.ErrorTracker
-import com.aldi.cryptocoins.model.AssetsResponseDTO
-import com.aldi.cryptocoins.model.Coin
-import com.aldi.cryptocoins.model.CoinDTO
+import com.aldi.cryptocoins.store.datasource.dto.AssetsResponseDTO
+import com.aldi.cryptocoins.store.datasource.dto.CoinDTO
+import com.aldi.cryptocoins.store.model.Coin
 import com.aldi.cryptocoins.testutils.TestDispatcherProvider
 import io.mockk.coEvery
 import io.mockk.coVerify

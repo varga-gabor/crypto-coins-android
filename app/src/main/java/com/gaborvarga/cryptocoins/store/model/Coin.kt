@@ -1,4 +1,4 @@
-package com.aldi.cryptocoins.model
+package com.aldi.cryptocoins.store.model
 
 data class Coin(
     val id: String,

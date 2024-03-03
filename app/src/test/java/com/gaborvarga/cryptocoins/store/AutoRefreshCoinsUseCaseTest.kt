@@ -1,8 +1,8 @@
 package com.aldi.cryptocoins.store
 
 import app.cash.turbine.test
-import com.aldi.cryptocoins.model.Coin
 import com.aldi.cryptocoins.store.AutoRefreshCoinsUseCase.AutoRefreshResult
+import com.aldi.cryptocoins.store.model.Coin
 import com.aldi.cryptocoins.testutils.assertNextItem
 import io.mockk.coEvery
 import io.mockk.every

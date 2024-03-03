@@ -1,6 +1,6 @@
 package com.aldi.cryptocoins.store.datasource
 
-import com.aldi.cryptocoins.model.AssetsResponseDTO
+import com.aldi.cryptocoins.store.datasource.dto.AssetsResponseDTO
 import retrofit2.http.GET
 import retrofit2.http.QueryMap
 

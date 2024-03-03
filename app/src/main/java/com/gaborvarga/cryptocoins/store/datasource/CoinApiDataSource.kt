@@ -2,7 +2,7 @@ package com.aldi.cryptocoins.store.datasource
 
 import com.aldi.cryptocoins.architecture.dispatchers.DispatcherProvider
 import com.aldi.cryptocoins.architecture.errortracker.ErrorTracker
-import com.aldi.cryptocoins.model.Coin
+import com.aldi.cryptocoins.store.model.Coin
 import kotlinx.coroutines.withContext
 import org.koin.core.annotation.Factory
 

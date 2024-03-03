@@ -1,7 +1,7 @@
 package com.aldi.cryptocoins.store
 
-import com.aldi.cryptocoins.model.Coin
 import com.aldi.cryptocoins.store.datasource.CoinApiDataSource
+import com.aldi.cryptocoins.store.model.Coin
 import org.koin.core.annotation.Factory
 
 @Factory

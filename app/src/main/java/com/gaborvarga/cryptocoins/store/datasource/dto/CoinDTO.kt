@@ -1,5 +1,6 @@
-package com.aldi.cryptocoins.model
+package com.aldi.cryptocoins.store.datasource.dto
 
+import com.aldi.cryptocoins.store.model.Coin
 import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)

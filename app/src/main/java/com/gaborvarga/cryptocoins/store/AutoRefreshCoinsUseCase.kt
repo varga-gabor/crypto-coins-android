@@ -1,6 +1,6 @@
 package com.aldi.cryptocoins.store
 
-import com.aldi.cryptocoins.model.Coin
+import com.aldi.cryptocoins.store.model.Coin
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.currentCoroutineContext

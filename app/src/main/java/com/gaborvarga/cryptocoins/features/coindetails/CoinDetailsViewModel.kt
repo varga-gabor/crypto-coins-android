@@ -7,9 +7,9 @@ import com.aldi.cryptocoins.architecture.navigation.api.Navigator
 import com.aldi.cryptocoins.features.coindetails.model.CoinDetails
 import com.aldi.cryptocoins.features.coindetails.model.CoinDetailsUiState
 import com.aldi.cryptocoins.features.coindetails.navigation.CoinDetailsDestination.Companion.EXTRA_COIN_ID
-import com.aldi.cryptocoins.model.Coin
 import com.aldi.cryptocoins.store.AutoRefreshCoinsUseCase
 import com.aldi.cryptocoins.store.AutoRefreshCoinsUseCase.AutoRefreshResult
+import com.aldi.cryptocoins.store.model.Coin
 import com.aldi.cryptocoins.util.formatter.CoinNumberFormatter
 import com.aldi.cryptocoins.util.formatter.PercentageFormatter
 import com.aldi.cryptocoins.util.formatter.PriceFormatter
