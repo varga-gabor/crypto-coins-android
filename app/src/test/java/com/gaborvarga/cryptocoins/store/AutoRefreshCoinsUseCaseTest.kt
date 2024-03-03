@@ -33,9 +33,10 @@ class AutoRefreshCoinsUseCaseTest {
     private val autoRefreshParams: AutoRefreshParams = mockk {
         every { refreshIntervalMs } returns autoRefreshIntervalMs
         every { flowStopTimeoutMs } returns 0
+        every { pendingDelayMs } returns 0
     }
     private val coinRepository: CoinRepository = mockk {
-        coEvery { getCoinList() } returns testCoinList
+        coEvery { getCoinList(any()) } returns testCoinList
     }
     private lateinit var useCase: AutoRefreshCoinsUseCase
 

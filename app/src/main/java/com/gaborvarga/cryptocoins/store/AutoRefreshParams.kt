@@ -6,4 +6,5 @@ import org.koin.core.annotation.Factory
 data class AutoRefreshParams(
     val refreshIntervalMs: Long = 1000 * 60, // 1 minute
     val flowStopTimeoutMs: Long = 5000,
+    val pendingDelayMs: Long = 200,
 )

@@ -31,7 +31,9 @@ class AutoRefreshCoinsUseCase(
         .flatMapLatest {
             flow {
                 emit(AutoRefreshResult.Pending)
-                val coinList = coinRepository.getCoinList()
+                val coinList = coinRepository.getCoinList(MAX_RANK)
+                // Small delay to mitigate loading flickering -> a better solution is needed
+                delay(autoRefreshParams.pendingDelayMs)
                 emit(AutoRefreshResult.Success(coinList))
             }
         }
@@ -45,5 +47,9 @@ class AutoRefreshCoinsUseCase(
 
         data object Pending : AutoRefreshResult
         data class Success(val coinList: List<Coin>) : AutoRefreshResult
+    }
+
+    private companion object {
+        const val MAX_RANK = 10
     }
 }
