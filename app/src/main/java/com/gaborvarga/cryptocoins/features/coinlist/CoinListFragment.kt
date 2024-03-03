@@ -5,7 +5,6 @@ import android.view.View
 import android.widget.ProgressBar
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
@@ -15,10 +14,11 @@ import com.aldi.cryptocoins.R
 import com.aldi.cryptocoins.features.coinlist.model.CoinListUiState
 import com.aldi.cryptocoins.features.coinlist.recyclerview.CoinListAdapter
 import kotlinx.coroutines.launch
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class CoinListFragment : Fragment(R.layout.fragment_coinlist) {
 
-    private val viewModel: CoinListViewModel by viewModels()
+    private val viewModel by viewModel<CoinListViewModel>()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
