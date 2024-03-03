@@ -9,6 +9,7 @@ class MockCoinDataSource {
 
     private val mockCoinList = listOf(
         Coin(
+            id = "bitcoin",
             name = "Bitcoin",
             symbol = "BTC",
             price = "62841.3776139956093479",
@@ -18,6 +19,7 @@ class MockCoinDataSource {
             supply = "19632025.0000000000000000",
         ),
         Coin(
+            id = "ethereum",
             name = "Ethereum",
             symbol = "ETH",
             price = "345.0042203554732305",

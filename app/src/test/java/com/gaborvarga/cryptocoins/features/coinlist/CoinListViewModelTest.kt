@@ -23,6 +23,7 @@ class CoinListViewModelTest {
 
     private val testCoinList = listOf(
         Coin(
+            id = "ethereum",
             name = "Ethereum",
             symbol = "ETH",
             price = "1.0",
@@ -119,6 +120,7 @@ class CoinListViewModelTest {
             val expectedState = CoinListUiState(
                 listOf(
                     CoinListEntry(
+                        id = "ethereum",
                         name = "Ethereum",
                         symbol = "ETH",
                         price = "$1.0",

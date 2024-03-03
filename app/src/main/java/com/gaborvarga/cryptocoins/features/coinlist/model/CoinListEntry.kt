@@ -4,6 +4,7 @@ import androidx.annotation.ColorRes
 import androidx.annotation.DrawableRes
 
 data class CoinListEntry(
+    val id: String,
     val name: String,
     val symbol: String,
     val price: String,

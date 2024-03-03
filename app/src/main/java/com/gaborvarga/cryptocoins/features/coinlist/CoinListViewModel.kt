@@ -51,6 +51,7 @@ class CoinListViewModel(
     private fun List<Coin>.mapToUiModel(): List<CoinListEntry> =
         map { coin ->
             CoinListEntry(
+                id = coin.id,
                 name = coin.name,
                 symbol = coin.symbol,
                 price = priceFormatter.formatToUsdPrice(coin.price),

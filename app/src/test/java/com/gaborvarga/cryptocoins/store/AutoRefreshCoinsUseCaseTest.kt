@@ -18,6 +18,7 @@ class AutoRefreshCoinsUseCaseTest {
 
     private val testCoinList = listOf(
         Coin(
+            id = "ethereum",
             name = "Ethereum",
             symbol = "ETH",
             price = "1.12",
