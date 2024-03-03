@@ -1,30 +1,90 @@
 package com.aldi.cryptocoins.features.coindetails
 
+import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import com.aldi.cryptocoins.R
 import com.aldi.cryptocoins.features.coindetails.model.CoinDetails
 import com.aldi.cryptocoins.features.coindetails.model.CoinDetailsUiState
+import com.aldi.cryptocoins.formatter.CoinNumberFormatter
+import com.aldi.cryptocoins.formatter.PercentageFormatter
+import com.aldi.cryptocoins.formatter.PriceFormatter
+import com.aldi.cryptocoins.model.Coin
+import com.aldi.cryptocoins.store.AutoRefreshCoinsUseCase
+import com.aldi.cryptocoins.store.AutoRefreshCoinsUseCase.AutoRefreshResult
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.map
 import org.koin.android.annotation.KoinViewModel
 
 @KoinViewModel
-class CoinDetailsViewModel : ViewModel() {
+class CoinDetailsViewModel(
+    savedStateHandle: SavedStateHandle,
+    private val autoRefreshCoinsUseCase: AutoRefreshCoinsUseCase,
+    private val priceFormatter: PriceFormatter,
+    private val numberFormatter: CoinNumberFormatter,
+    private val percentageFormatter: PercentageFormatter,
+) : ViewModel() {
 
-    private val mockCoinDetails = CoinDetails(
-        name = "Ethereum",
-        price = "$28.61",
-        changePercent = "0.44%",
-        changePercentColor = R.color.green,
-        marketCap = "$226.94B",
-        volume = "$2.46B",
-        supply = "120.38M",
-    )
-    private val mockUiState = CoinDetailsUiState(
-        coinDetails = mockCoinDetails,
-        isLoading = false,
-    )
+    private val coinId: String = checkNotNull(savedStateHandle[EXTRA_COIN_ID])
 
-    private val _uiState = MutableStateFlow(mockUiState)
+    private val _uiState = MutableStateFlow(initialUiState)
     val uiState = _uiState.asStateFlow()
+
+    suspend fun onViewStarted() {
+        autoRefreshCoinsUseCase.coinListFlow
+            .mapToUiState()
+            .collect { _uiState.value = it }
+    }
+
+    private fun Flow<AutoRefreshResult>.mapToUiState(): Flow<CoinDetailsUiState> =
+        map { result ->
+            when (result) {
+                is AutoRefreshResult.Pending -> {
+                    _uiState.value.copy(
+                        isLoading = true,
+                    )
+                }
+
+                is AutoRefreshResult.Success -> {
+                    CoinDetailsUiState(
+                        coinDetails = result.coinList.findCoinById(coinId).toUiModel(),
+                        isLoading = false,
+                    )
+                }
+            }
+        }
+
+    private fun List<Coin>.findCoinById(coinId: String): Coin =
+        first { it.id == coinId }
+
+    private fun Coin.toUiModel(): CoinDetails =
+        CoinDetails(
+            name = name,
+            price = priceFormatter.formatToUsdPrice(price),
+            changePercent = percentageFormatter.format(changePercent),
+            changePercentColor = percentageFormatter.getTextColor(changePercent),
+            marketCap = priceFormatter.formatToUsdPrice(marketCap),
+            volume = priceFormatter.formatToUsdPrice(volume),
+            supply = numberFormatter.abbreviate(supply),
+        )
+
+    companion object {
+        const val EXTRA_COIN_ID = "coinId"
+
+        // Shouldn't be shown, but included; just in case
+        private val emptyCoinDetails = CoinDetails(
+            name = "",
+            price = "",
+            changePercent = "",
+            changePercentColor = R.color.green,
+            marketCap = "",
+            volume = "",
+            supply = "",
+        )
+        private val initialUiState = CoinDetailsUiState(
+            coinDetails = emptyCoinDetails,
+            isLoading = false,
+        )
+    }
 }
