@@ -46,4 +46,10 @@ dependencies {
     implementation(libs.androidx.lifecycle.common.java8)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.lifecycle.viewmodel.ktx)
+
+    // DI
+    ksp(libs.io.insert.koin.ksp.compiler)
+    implementation(libs.io.insert.koin.core)
+    implementation(libs.io.insert.koin.android)
+    implementation(libs.io.insert.koin.annotations)
 }
