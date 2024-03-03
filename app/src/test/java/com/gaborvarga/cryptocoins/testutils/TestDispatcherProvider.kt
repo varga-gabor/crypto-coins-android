@@ -1,4 +1,4 @@
-package com.aldi.cryptocoins.utils
+package com.aldi.cryptocoins.testutils
 
 import com.aldi.cryptocoins.architecture.dispatchers.DispatcherProvider
 import kotlinx.coroutines.CoroutineDispatcher

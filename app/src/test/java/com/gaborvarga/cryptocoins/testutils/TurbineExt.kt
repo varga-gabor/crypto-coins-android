@@ -1,4 +1,4 @@
-package com.aldi.cryptocoins.utils
+package com.aldi.cryptocoins.testutils
 
 import app.cash.turbine.TurbineTestContext
 import org.junit.jupiter.api.Assertions

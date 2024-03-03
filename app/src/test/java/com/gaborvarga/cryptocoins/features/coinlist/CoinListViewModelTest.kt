@@ -8,10 +8,10 @@ import com.aldi.cryptocoins.features.coinlist.model.CoinListUiState
 import com.aldi.cryptocoins.model.Coin
 import com.aldi.cryptocoins.store.AutoRefreshCoinsUseCase
 import com.aldi.cryptocoins.store.AutoRefreshCoinsUseCase.AutoRefreshResult
+import com.aldi.cryptocoins.testutils.assertNextItem
 import com.aldi.cryptocoins.util.formatter.PercentageFormatter
 import com.aldi.cryptocoins.util.formatter.PriceFormatter
 import com.aldi.cryptocoins.util.resourceprovider.CoinResourceProvider
-import com.aldi.cryptocoins.utils.assertNextItem
 import io.mockk.coEvery
 import io.mockk.every
 import io.mockk.mockk

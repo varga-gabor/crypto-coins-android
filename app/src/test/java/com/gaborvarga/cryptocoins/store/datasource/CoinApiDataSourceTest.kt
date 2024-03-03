@@ -6,7 +6,7 @@ import com.aldi.cryptocoins.architecture.errortracker.ErrorTracker
 import com.aldi.cryptocoins.model.AssetsResponseDTO
 import com.aldi.cryptocoins.model.Coin
 import com.aldi.cryptocoins.model.CoinDTO
-import com.aldi.cryptocoins.utils.TestDispatcherProvider
+import com.aldi.cryptocoins.testutils.TestDispatcherProvider
 import io.mockk.coEvery
 import io.mockk.coVerify
 import io.mockk.mockk
