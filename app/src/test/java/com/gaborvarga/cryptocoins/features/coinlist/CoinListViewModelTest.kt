@@ -10,13 +10,13 @@ import com.aldi.cryptocoins.model.Coin
 import com.aldi.cryptocoins.resourceprovider.CoinResourceProvider
 import com.aldi.cryptocoins.store.AutoRefreshCoinsUseCase
 import com.aldi.cryptocoins.store.AutoRefreshCoinsUseCase.AutoRefreshResult
+import com.aldi.cryptocoins.utils.assertNextItem
 import io.mockk.coEvery
 import io.mockk.every
 import io.mockk.mockk
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.test.runTest
-import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 
 class CoinListViewModelTest {
@@ -63,16 +63,13 @@ class CoinListViewModelTest {
 
         // Then
         viewModel.uiState.test {
-            val initialState = awaitItem()
             val expectedState = CoinListUiState(
                 emptyList(),
                 isLoading = true,
             )
 
-            assertEquals(
-                expectedState,
-                initialState,
-            )
+            assertNextItem(expectedState)
+            ensureAllEventsConsumed()
         }
     }
 
@@ -89,20 +86,16 @@ class CoinListViewModelTest {
 
         // Then
         viewModel.uiState.test {
-            val job = launch {
+            backgroundScope.launch {
                 viewModel.onViewStarted()
             }
-            val uiState = awaitItem()
             val expectedState = CoinListUiState(
                 emptyList(),
                 isLoading = true,
             )
 
-            assertEquals(
-                expectedState,
-                uiState,
-            )
-            job.cancel()
+            assertNextItem(expectedState)
+            ensureAllEventsConsumed()
         }
     }
 
@@ -119,11 +112,10 @@ class CoinListViewModelTest {
 
         // Then
         viewModel.uiState.test {
-            val job = launch {
+            backgroundScope.launch {
                 viewModel.onViewStarted()
             }
-            val initialState = awaitItem()
-            val uiState = awaitItem()
+            skipItems(1) // Initial state
             val expectedState = CoinListUiState(
                 listOf(
                     CoinListEntry(
@@ -138,11 +130,8 @@ class CoinListViewModelTest {
                 isLoading = false,
             )
 
-            assertEquals(
-                expectedState,
-                uiState,
-            )
-            job.cancel()
+            assertNextItem(expectedState)
+            ensureAllEventsConsumed()
         }
     }
 }
