@@ -91,6 +91,9 @@ class NavigatorImpl(
                 activityWrapper.activity.classLoader,
                 route.fragmentClass.name,
             )
+            if (route.arguments != null) {
+                fragment.arguments = route.arguments
+            }
             replace(activityWrapper.fragmentContainerResId, fragment, route.fragmentClass.name)
             addToBackStack(route.fragmentClass.name)
         }
