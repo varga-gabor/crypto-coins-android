@@ -27,6 +27,11 @@ class CoinListFragment : Fragment(R.layout.fragment_coinlist) {
 
         viewLifecycleOwner.lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.onViewStarted()
+            }
+        }
+        viewLifecycleOwner.lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.uiState.collect { uiState ->
                     render(uiComponents, uiState)
                 }
