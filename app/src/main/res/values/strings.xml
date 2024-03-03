@@ -4,4 +4,12 @@
     <!-- Coin List screen -->
     <string name="coinlist_toolbar_title">Coins</string>
 
+    <!-- Coin Details screen -->
+    <string name="coindetails_back_arrow_content_desc">Go back to coin list screen</string>
+    <string name="coindetails_price_label">Price</string>
+    <string name="coindetails_change_percent_label">Change (24hr)</string>
+    <string name="coindetails_market_cap_label">Market Cap</string>
+    <string name="coindetails_volume_label">Volume (24hr)</string>
+    <string name="coindetails_supply_label">Supply</string>
+
 </resources>

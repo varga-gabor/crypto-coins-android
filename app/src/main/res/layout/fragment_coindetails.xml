@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/blue_pale"
+    >
+
+    <View
+        android:id="@+id/toolbarView"
+        style="@style/Toolbar"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@id/toolbarBarrier"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        />
+
+    <ImageView
+        android:id="@+id/backArrowImageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/coindetails_back_arrow_content_desc"
+        android:padding="@dimen/spacing_4"
+        android:src="@drawable/ic_back_arrow"
+        app:layout_constraintBottom_toTopOf="@id/toolbarBarrier"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        />
+
+    <TextView
+        android:id="@+id/toolbarTitleTextView"
+        style="@style/Headline_L_Bold"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_16"
+        android:layout_marginEnd="@dimen/spacing_24"
+        android:ellipsize="marquee"
+        android:maxLines="1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/backArrowImageView"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="ETHEREUM"
+        />
+
+    <androidx.constraintlayout.widget.Barrier
+        android:id="@+id/toolbarBarrier"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:barrierDirection="bottom"
+        app:barrierMargin="@dimen/spacing_8"
+        app:constraint_referenced_ids="backArrowImageView,toolbarTitleTextView"
+        />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/coinCardView"
+        style="@style/RoundedCardView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginHorizontal="@dimen/spacing_24"
+        android:layout_marginTop="@dimen/spacing_16"
+        android:layout_marginBottom="@dimen/spacing_40"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/toolbarBarrier"
+        >
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingHorizontal="@dimen/spacing_24"
+            android:paddingVertical="@dimen/spacing_16"
+            >
+
+            <TextView
+                android:id="@+id/priceLabelTextView"
+                style="@style/Body_Regular"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:ellipsize="marquee"
+                android:maxLines="1"
+                android:text="@string/coindetails_price_label"
+                app:layout_constraintEnd_toStartOf="@id/priceTextView"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                />
+
+            <TextView
+                android:id="@+id/priceTextView"
+                style="@style/Body_Regular_Bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:maxLines="1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="$28.61K"
+                />
+
+            <TextView
+                android:id="@+id/changePercentLabelTextView"
+                style="@style/Body_Regular"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_8"
+                android:ellipsize="marquee"
+                android:maxLines="1"
+                android:text="@string/coindetails_change_percent_label"
+                app:layout_constraintEnd_toStartOf="@id/changePercentTextView"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/priceLabelTextView"
+                />
+
+            <TextView
+                android:id="@+id/changePercentTextView"
+                style="@style/Body_Regular_Bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:maxLines="1"
+                app:layout_constraintBaseline_toBaselineOf="@id/changePercentLabelTextView"
+                app:layout_constraintEnd_toEndOf="parent"
+                tools:text="0.44%"
+                tools:textColor="@color/green"
+                />
+
+            <View
+                android:id="@+id/separatorView"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_marginTop="@dimen/spacing_24"
+                android:background="@color/blue"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/changePercentLabelTextView"
+                />
+
+            <TextView
+                android:id="@+id/marketCapLabelTextView"
+                style="@style/Body_Regular"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_24"
+                android:ellipsize="marquee"
+                android:maxLines="1"
+                android:text="@string/coindetails_market_cap_label"
+                app:layout_constraintEnd_toStartOf="@id/marketCapTextView"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/separatorView"
+                />
+
+            <TextView
+                android:id="@+id/marketCapTextView"
+                style="@style/Body_Regular_Bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:maxLines="1"
+                app:layout_constraintBaseline_toBaselineOf="@id/marketCapLabelTextView"
+                app:layout_constraintEnd_toEndOf="parent"
+                tools:text="$226.94B"
+                />
+
+            <TextView
+                android:id="@+id/volumeLabelTextView"
+                style="@style/Body_Regular"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_8"
+                android:ellipsize="marquee"
+                android:maxLines="1"
+                android:text="@string/coindetails_volume_label"
+                app:layout_constraintEnd_toStartOf="@id/volumeTextView"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/marketCapLabelTextView"
+                />
+
+            <TextView
+                android:id="@+id/volumeTextView"
+                style="@style/Body_Regular_Bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:maxLines="1"
+                app:layout_constraintBaseline_toBaselineOf="@id/volumeLabelTextView"
+                app:layout_constraintEnd_toEndOf="parent"
+                tools:text="$2.46B"
+                />
+
+            <TextView
+                android:id="@+id/supplyLabelTextView"
+                style="@style/Body_Regular"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_8"
+                android:ellipsize="marquee"
+                android:maxLines="1"
+                android:text="@string/coindetails_supply_label"
+                app:layout_constraintEnd_toStartOf="@id/supplyTextView"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/volumeLabelTextView"
+                />
+
+            <TextView
+                android:id="@+id/supplyTextView"
+                style="@style/Body_Regular_Bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:maxLines="1"
+                app:layout_constraintBaseline_toBaselineOf="@id/supplyLabelTextView"
+                app:layout_constraintEnd_toEndOf="parent"
+                tools:text="120.38M"
+                />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/loadingOverlayGroup"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:visibility="gone"
+        app:constraint_referenced_ids="overlayView,progressBar"
+        />
+
+    <View
+        android:id="@+id/overlayView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/bg_semi_transparent_rounded"
+        app:layout_constraintBottom_toBottomOf="@id/coinCardView"
+        app:layout_constraintEnd_toEndOf="@id/coinCardView"
+        app:layout_constraintStart_toStartOf="@id/coinCardView"
+        app:layout_constraintTop_toTopOf="@id/coinCardView"
+        />
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="@style/ProgressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/toolbarBarrier"
+        />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
