@@ -1,4 +1,4 @@
-package com.aldi.cryptocoins.formatter
+package com.aldi.cryptocoins.util.formatter
 
 import com.aldi.cryptocoins.architecture.errortracker.ErrorTracker
 import io.mockk.mockk

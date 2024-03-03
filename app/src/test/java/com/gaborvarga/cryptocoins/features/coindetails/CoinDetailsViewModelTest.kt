@@ -6,12 +6,12 @@ import com.aldi.cryptocoins.R
 import com.aldi.cryptocoins.architecture.navigation.api.Navigator
 import com.aldi.cryptocoins.features.coindetails.model.CoinDetails
 import com.aldi.cryptocoins.features.coindetails.model.CoinDetailsUiState
-import com.aldi.cryptocoins.formatter.CoinNumberFormatter
-import com.aldi.cryptocoins.formatter.PercentageFormatter
-import com.aldi.cryptocoins.formatter.PriceFormatter
 import com.aldi.cryptocoins.model.Coin
 import com.aldi.cryptocoins.store.AutoRefreshCoinsUseCase
 import com.aldi.cryptocoins.store.AutoRefreshCoinsUseCase.AutoRefreshResult
+import com.aldi.cryptocoins.util.formatter.CoinNumberFormatter
+import com.aldi.cryptocoins.util.formatter.PercentageFormatter
+import com.aldi.cryptocoins.util.formatter.PriceFormatter
 import com.aldi.cryptocoins.utils.assertNextItem
 import io.mockk.coEvery
 import io.mockk.every

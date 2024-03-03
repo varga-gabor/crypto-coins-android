@@ -1,4 +1,4 @@
-package com.aldi.cryptocoins.formatter
+package com.aldi.cryptocoins.util.formatter
 
 import org.koin.core.annotation.Factory
 

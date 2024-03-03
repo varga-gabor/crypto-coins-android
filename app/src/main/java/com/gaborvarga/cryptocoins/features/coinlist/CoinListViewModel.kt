@@ -5,12 +5,12 @@ import com.aldi.cryptocoins.architecture.navigation.api.Navigator
 import com.aldi.cryptocoins.features.coindetails.navigation.CoinDetailsDestination
 import com.aldi.cryptocoins.features.coinlist.model.CoinListEntry
 import com.aldi.cryptocoins.features.coinlist.model.CoinListUiState
-import com.aldi.cryptocoins.formatter.PercentageFormatter
-import com.aldi.cryptocoins.formatter.PriceFormatter
 import com.aldi.cryptocoins.model.Coin
-import com.aldi.cryptocoins.resourceprovider.CoinResourceProvider
 import com.aldi.cryptocoins.store.AutoRefreshCoinsUseCase
 import com.aldi.cryptocoins.store.AutoRefreshCoinsUseCase.AutoRefreshResult
+import com.aldi.cryptocoins.util.formatter.PercentageFormatter
+import com.aldi.cryptocoins.util.formatter.PriceFormatter
+import com.aldi.cryptocoins.util.resourceprovider.CoinResourceProvider
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow

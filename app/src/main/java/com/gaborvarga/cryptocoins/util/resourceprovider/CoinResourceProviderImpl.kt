@@ -1,4 +1,4 @@
-package com.aldi.cryptocoins.resourceprovider
+package com.aldi.cryptocoins.util.resourceprovider
 
 import androidx.annotation.DrawableRes
 import com.aldi.cryptocoins.R

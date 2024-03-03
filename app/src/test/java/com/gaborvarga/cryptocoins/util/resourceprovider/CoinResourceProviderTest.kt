@@ -1,4 +1,4 @@
-package com.aldi.cryptocoins.resourceprovider
+package com.aldi.cryptocoins.util.resourceprovider
 
 import com.aldi.cryptocoins.R
 import org.junit.jupiter.api.Assertions.assertEquals
