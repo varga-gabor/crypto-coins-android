@@ -5,6 +5,7 @@ import com.aldi.cryptocoins.network.MoshiFactory
 import com.aldi.cryptocoins.network.RetrofitConfig
 import com.aldi.cryptocoins.network.RetrofitConfigFactory
 import com.aldi.cryptocoins.network.RetrofitFactory
+import com.aldi.cryptocoins.store.datasource.AssetsApi
 import com.squareup.moshi.Moshi
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.DelicateCoroutinesApi
@@ -34,4 +35,8 @@ class AppModule {
     @Singleton
     fun retrofit(moshi: Moshi, retrofitConfig: RetrofitConfig): Retrofit =
         RetrofitFactory.create(moshi, retrofitConfig)
+
+    @Singleton
+    fun assetsApi(retrofit: Retrofit): AssetsApi =
+        retrofit.create(AssetsApi::class.java)
 }
