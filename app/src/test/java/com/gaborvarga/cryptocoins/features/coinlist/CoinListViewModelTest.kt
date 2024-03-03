@@ -2,6 +2,7 @@ package com.aldi.cryptocoins.features.coinlist
 
 import app.cash.turbine.test
 import com.aldi.cryptocoins.R
+import com.aldi.cryptocoins.architecture.navigation.api.Navigator
 import com.aldi.cryptocoins.features.coinlist.model.CoinListEntry
 import com.aldi.cryptocoins.features.coinlist.model.CoinListUiState
 import com.aldi.cryptocoins.formatter.PercentageFormatter
@@ -45,6 +46,7 @@ class CoinListViewModelTest {
     private val resourceProvider: CoinResourceProvider = mockk {
         every { getIcon(any()) } returns R.drawable.ic_ethereum
     }
+    private val navigator: Navigator = mockk(relaxUnitFun = true)
 
     private lateinit var viewModel: CoinListViewModel
 
@@ -54,6 +56,7 @@ class CoinListViewModelTest {
             priceFormatter,
             percentageFormatter,
             resourceProvider,
+            navigator,
         )
     }
 

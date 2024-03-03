@@ -3,6 +3,7 @@ package com.aldi.cryptocoins.features.coindetails
 import androidx.lifecycle.SavedStateHandle
 import app.cash.turbine.test
 import com.aldi.cryptocoins.R
+import com.aldi.cryptocoins.architecture.navigation.api.Navigator
 import com.aldi.cryptocoins.features.coindetails.model.CoinDetails
 import com.aldi.cryptocoins.features.coindetails.model.CoinDetailsUiState
 import com.aldi.cryptocoins.formatter.CoinNumberFormatter
@@ -73,6 +74,7 @@ class CoinDetailsViewModelTest {
         every { format(any()) } returns testPercentage
         every { getTextColor(any()) } returns testColor
     }
+    private val navigator: Navigator = mockk(relaxUnitFun = true)
 
     private lateinit var viewModel: CoinDetailsViewModel
 
@@ -83,6 +85,7 @@ class CoinDetailsViewModelTest {
             priceFormatter,
             numberFormatter,
             percentageFormatter,
+            navigator,
         )
     }
 

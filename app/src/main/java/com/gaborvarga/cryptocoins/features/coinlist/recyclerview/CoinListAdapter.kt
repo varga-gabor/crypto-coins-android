@@ -10,8 +10,8 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.aldi.cryptocoins.R
-import com.aldi.cryptocoins.features.coinlist.recyclerview.CoinListAdapter.CoinViewHolder
 import com.aldi.cryptocoins.features.coinlist.model.CoinListEntry
+import com.aldi.cryptocoins.features.coinlist.recyclerview.CoinListAdapter.CoinViewHolder
 
 @SuppressLint("NotifyDataSetChanged")
 class CoinListAdapter : ListAdapter<CoinListEntry, CoinViewHolder>(CoinListDiffUtil()) {
@@ -21,6 +21,7 @@ class CoinListAdapter : ListAdapter<CoinListEntry, CoinViewHolder>(CoinListDiffU
             field = value
             notifyDataSetChanged()
         }
+    var onItemClickedListener: ((coinId: String) -> Unit)? = null
 
     override fun getItemCount(): Int = items.size
 
@@ -29,7 +30,7 @@ class CoinListAdapter : ListAdapter<CoinListEntry, CoinViewHolder>(CoinListDiffU
             .from(parent.context)
             .inflate(R.layout.layout_coinlist_item, parent, false)
 
-        return CoinViewHolder(view)
+        return CoinViewHolder(view, onItemClickedListener)
     }
 
     override fun onBindViewHolder(holder: CoinViewHolder, position: Int) {
@@ -37,7 +38,10 @@ class CoinListAdapter : ListAdapter<CoinListEntry, CoinViewHolder>(CoinListDiffU
         holder.bind(item)
     }
 
-    class CoinViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+    class CoinViewHolder(
+        private val view: View,
+        private val onItemClickedListener: ((coinId: String) -> Unit)?,
+    ) : RecyclerView.ViewHolder(view) {
 
         private val coinImageView = view.findViewById<ImageView>(R.id.coinImageView)
         private val coinNameTextView = view.findViewById<TextView>(R.id.coinNameTextView)
@@ -53,6 +57,9 @@ class CoinListAdapter : ListAdapter<CoinListEntry, CoinViewHolder>(CoinListDiffU
             changePercentTextView.apply {
                 text = coinListEntry.changePercent
                 setTextColor(ContextCompat.getColor(context, coinListEntry.changePercentColor))
+            }
+            view.setOnClickListener {
+                onItemClickedListener?.invoke(coinListEntry.id)
             }
         }
     }

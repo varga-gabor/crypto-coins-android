@@ -1,6 +1,8 @@
 package com.aldi.cryptocoins.features.coinlist
 
 import androidx.lifecycle.ViewModel
+import com.aldi.cryptocoins.architecture.navigation.api.Navigator
+import com.aldi.cryptocoins.features.coindetails.navigation.CoinDetailsDestination
 import com.aldi.cryptocoins.features.coinlist.model.CoinListEntry
 import com.aldi.cryptocoins.features.coinlist.model.CoinListUiState
 import com.aldi.cryptocoins.formatter.PercentageFormatter
@@ -21,6 +23,7 @@ class CoinListViewModel(
     private val priceFormatter: PriceFormatter,
     private val percentageFormatter: PercentageFormatter,
     private val resourceProvider: CoinResourceProvider,
+    private val navigator: Navigator,
 ) : ViewModel() {
 
     suspend fun onViewStarted() {
@@ -60,6 +63,10 @@ class CoinListViewModel(
                 icon = resourceProvider.getIcon(coin.name),
             )
         }
+
+    fun onListItemClicked(coinId: String) {
+        navigator.navigateTo(CoinDetailsDestination(coinId))
+    }
 
     private val _uiState = MutableStateFlow(initialUiState)
     val uiState = _uiState.asStateFlow()

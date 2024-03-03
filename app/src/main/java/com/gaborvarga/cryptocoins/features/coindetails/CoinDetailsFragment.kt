@@ -49,7 +49,9 @@ class CoinDetailsFragment : Fragment(R.layout.fragment_coindetails) {
         val loadingOverlayGroup = view.findViewById<Group>(R.id.loadingOverlayGroup)
 
         view.findViewById<ImageView>(R.id.backArrowImageView).apply {
-            setOnClickListener {}
+            setOnClickListener {
+                viewModel.onBackClicked()
+            }
         }
 
         return UiComponents(

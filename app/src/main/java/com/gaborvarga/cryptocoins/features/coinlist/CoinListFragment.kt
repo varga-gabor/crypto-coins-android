@@ -42,6 +42,9 @@ class CoinListFragment : Fragment(R.layout.fragment_coinlist) {
     private fun initUiComponents(view: View): UiComponents {
         val recyclerViewAdapter = CoinListAdapter().apply {
             stateRestorationPolicy = RecyclerView.Adapter.StateRestorationPolicy.PREVENT_WHEN_EMPTY
+            onItemClickedListener = { coinId ->
+                viewModel.onListItemClicked(coinId)
+            }
         }
         val recyclerView = view.findViewById<RecyclerView>(R.id.coinsRecyclerView).apply {
             layoutManager = LinearLayoutManager(requireContext())

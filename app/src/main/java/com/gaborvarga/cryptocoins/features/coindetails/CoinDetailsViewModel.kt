@@ -3,8 +3,10 @@ package com.aldi.cryptocoins.features.coindetails
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import com.aldi.cryptocoins.R
+import com.aldi.cryptocoins.architecture.navigation.api.Navigator
 import com.aldi.cryptocoins.features.coindetails.model.CoinDetails
 import com.aldi.cryptocoins.features.coindetails.model.CoinDetailsUiState
+import com.aldi.cryptocoins.features.coindetails.navigation.CoinDetailsDestination.Companion.EXTRA_COIN_ID
 import com.aldi.cryptocoins.formatter.CoinNumberFormatter
 import com.aldi.cryptocoins.formatter.PercentageFormatter
 import com.aldi.cryptocoins.formatter.PriceFormatter
@@ -24,6 +26,7 @@ class CoinDetailsViewModel(
     private val priceFormatter: PriceFormatter,
     private val numberFormatter: CoinNumberFormatter,
     private val percentageFormatter: PercentageFormatter,
+    private val navigator: Navigator,
 ) : ViewModel() {
 
     private val coinId: String = checkNotNull(savedStateHandle[EXTRA_COIN_ID])
@@ -69,9 +72,11 @@ class CoinDetailsViewModel(
             supply = numberFormatter.abbreviate(supply),
         )
 
-    companion object {
-        const val EXTRA_COIN_ID = "coinId"
+    fun onBackClicked() {
+        navigator.navigateBack()
+    }
 
+    companion object {
         // Shouldn't be shown, but included; just in case
         private val emptyCoinDetails = CoinDetails(
             name = "",
