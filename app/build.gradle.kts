@@ -62,6 +62,14 @@ dependencies {
     // Logging
     implementation(libs.com.jakewharton.timber)
 
+    // Network
+    ksp(libs.com.squareup.moshi.kotlin.codegen)
+    implementation(libs.com.squareup.moshi)
+    implementation(libs.com.squareup.retrofit)
+    implementation(libs.com.squareup.retrofit.converter.moshi)
+    implementation(libs.com.squareup.okhttp3.okhttp)
+    implementation(libs.com.squareup.okhttp3.logging.interceptor)
+
     // Unit testing
     testImplementation(libs.junit.jupiter.api)
     testImplementation(libs.junit.jupiter.params)
