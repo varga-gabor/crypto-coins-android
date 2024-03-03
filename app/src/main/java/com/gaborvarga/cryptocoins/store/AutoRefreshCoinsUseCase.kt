@@ -8,6 +8,7 @@ import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.merge
 import kotlinx.coroutines.flow.onSubscription
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.isActive
@@ -29,13 +30,15 @@ class AutoRefreshCoinsUseCase(
         }
     }
 
-    val coinListFlow =
-        forceRefreshTrigger.combine(intervalFlow) { _, _ -> }
-            .map { coinRepository.getCoinList() }
-            .stateIn(
-                scope = externalScope,
-                started = SharingStarted.WhileSubscribed(autoRefreshParams.flowStopTimeoutMs),
-                initialValue = emptyList(),
-            )
-            .onSubscription { forceRefreshTrigger.emit(Unit) }
+    val coinListFlow = merge(
+        forceRefreshTrigger,
+        intervalFlow,
+    )
+        .map { coinRepository.getCoinList() }
+        .stateIn(
+            scope = externalScope,
+            started = SharingStarted.WhileSubscribed(autoRefreshParams.flowStopTimeoutMs),
+            initialValue = emptyList(),
+        )
+        .onSubscription { forceRefreshTrigger.emit(Unit) }
 }
